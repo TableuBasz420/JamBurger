@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed = 4f;
-    public int vie = 2;
+    public int vie = 1;
 
     private GameObject limitD;
     private GameObject limitG;
@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (vie > 0)
         {
             rb.velocity = new Vector2(speed * direction, rb.velocity.y);
@@ -73,27 +74,28 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 3f);
     }
     public void takeDamage(int damage)
-    { if (!invincible) {
+    {
+        if (!invincible)
+        {
             vie = vie - damage;
             invincible = true;
             skin.color = Color.red;
             timer = Time.time;
             StartCoroutine(recovery());
-     }
+        }
     }
 
     IEnumerator recovery()
     {
-        yield return new WaitForSeconds(0.1f);
-            invincible = false;
+        yield return new WaitForSeconds(1f);
+        invincible = false;
     }
     void OnTriggerEnter2D(Collider2D truc)
     {
-        if (truc.tag == "bullet")
+        if (truc.tag == "Player")
         {
             takeDamage(1);
         }
 
     }
 }
-
