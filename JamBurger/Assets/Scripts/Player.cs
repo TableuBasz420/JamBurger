@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded == true)
         {
                 Jump();
+            SoundManagerScript.playSound("playerJump");
         }
 
         if (isTouchingFront == true && isGrounded == false)
@@ -69,6 +70,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && wallSliding == true)
         {
             wallJumping = true;
+            SoundManagerScript.playSound("playerJump");
             Invoke("wallJumpingToFalse", wallJumpTime);
         }
 

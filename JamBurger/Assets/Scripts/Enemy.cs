@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
     void jeSuisMouru()
     {
         poufTesMort = true;
+        SoundManagerScript.playSound("enemyDie");
         animatotor.SetTrigger("death");
         rb.velocity = new Vector2(rb.velocity.x, 5f);
         rb.constraints = RigidbodyConstraints2D.None;
